@@ -1,0 +1,10 @@
+dbConfig:
+  host: localhost
+  user: root
+  password: my-secret-pw
+  dbName: test
+workerFetchInterval: 5
+images:
+  - name: cgr.dev/chainguard/nginx
+    constraint: "^1.2.*"
+    mainPackage: nginx

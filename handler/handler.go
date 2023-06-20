@@ -38,7 +38,6 @@ func New(opt Options) Interface {
 }
 
 func (s *client) V2Handler(ctx *gin.Context) {
-	println("in v2handler")
 	s.log.WithContext(ctx)
 	out, _ := http.NewRequest(ctx.Request.Method, "https://cgr.dev/v2/", nil)
 	s.log.WithFields(logrus.Fields{
@@ -63,13 +62,7 @@ func (s *client) V2Handler(ctx *gin.Context) {
 		"status": back.Status,
 		"header": utils.Redact(back.Header),
 	}).Info("got response")
-	// //
-	// bytes, err := io.ReadAll(back.Body)
-	// if err != nil {
-	// 	s.log.Fatal(err)
-	// }
-	// //
-	// fmt.Println("123" + string(bytes))
+
 	for k, v := range back.Header {
 		for _, vv := range v {
 			ctx.Writer.Header().Add(k, vv)
@@ -82,15 +75,10 @@ func (s *client) V2Handler(ctx *gin.Context) {
 	// In order for the client to be able to use this, we need to rewrite it to
 	// point to our token endpoint, not the upstream:
 	//   Www-Authenticate: Bearer realm="http://$HOST/token",service="cgr.dev"
-	/**
-	  For example of a response:
-	  {"level":"info","ts":1687083293.054385,"logger":"fallback","caller":"redirect/redirect.go:76","msg":"got response","method":"GET","url":"https://cgr.dev/v2/","status":"401 Unauthorized","header":{"Alt-Svc":["h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"],"Content-Length":["73"],"Content-Type":["text/plain; charset=utf-8"],"Date":["Sun, 18 Jun 2023 10:14:53 GMT"],"Docker-Distribution-Api-Version":["registry/2.0"],"Server":["istio-envoy"],"Via":["1.1 google"],"Www-Authenticate":["Bearer realm=\"https://cgr.dev/token\",service=\"cgr.dev\""],"X-Envoy-Upstream-Service-Time":["3"]}}
-	  **/
 	wwwAuth := back.Header.Get("Www-Authenticate")
 	if wwwAuth != "" {
 		rewrittenWwwAuth := strings.Replace(wwwAuth, `https://cgr.dev/`, fmt.Sprintf(`http://%s/`, ctx.Request.Host), 1)
-		ctx.Writer.Header().Del("Www-Authenticate")
-		ctx.Writer.Header().Add("Www-Authenticate", rewrittenWwwAuth)
+		ctx.Writer.Header().Set("Www-Authenticate", rewrittenWwwAuth)
 	}
 	ctx.Writer.WriteHeader(back.StatusCode)
 	if _, err := io.Copy(ctx.Writer, back.Body); err != nil {
@@ -100,7 +88,6 @@ func (s *client) V2Handler(ctx *gin.Context) {
 }
 
 func (s *client) TokenHandler(ctx *gin.Context) {
-	println("in tokenhandler")
 	s.log.WithContext(ctx)
 	vals := ctx.Request.URL.Query()
 	scope := vals.Get("scope")
@@ -146,7 +133,6 @@ func (s *client) TokenHandler(ctx *gin.Context) {
 }
 
 func (s *client) ProxyHandler(ctx *gin.Context) {
-	println("in proxyhandler")
 	// /v2/nginx/manifests/1.25.1-r0
 	a := strings.Split(ctx.Request.URL.Path, "/")
 	image := a[2]
@@ -241,7 +227,6 @@ func (s *client) ProxyHandler(ctx *gin.Context) {
 			ctx.AbortWithStatusJSON(http.StatusInternalServerError, err)
 			return
 		}
-		fmt.Printf("lr.Name: %v\n", lr.Name)
 		// chainguard/nginx -> nginx
 		lr.Name = strings.TrimPrefix(lr.Name, "chainguard/")
 

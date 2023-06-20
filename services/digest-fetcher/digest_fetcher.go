@@ -56,7 +56,6 @@ type Platform struct {
 }
 
 func (c *client) Fetch(images []config.Image) error {
-	fmt.Printf("c.fetchInterval: %v\n", c.fetchInterval)
 	for {
 		var wg sync.WaitGroup
 		for _, v := range images {
@@ -71,7 +70,6 @@ func (c *client) Fetch(images []config.Image) error {
 				var i Index
 				json.Unmarshal(idx, &i)
 				c.log.Debugf("unmarshalled index: %s", i)
-				fmt.Printf("len(i.Manifests): %v\n", len(i.Manifests))
 				for _, k := range i.Manifests {
 					if k.Platform.Architecture == "amd64" {
 						c.log.Info("begin loop")

@@ -9,7 +9,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/xxxibgdrgnmm/reverse-registry/config"
-	repository "github.com/xxxibgdrgnmm/reverse-registry/repository/storage"
+	repository "github.com/xxxibgdrgnmm/reverse-registry/repository"
 	containerregistry "github.com/xxxibgdrgnmm/reverse-registry/services/container-registry"
 	"github.com/xxxibgdrgnmm/reverse-registry/utils"
 )
@@ -91,7 +91,7 @@ func (c *client) Fetch(images []config.Image) error {
 						if err != nil {
 							c.log.Errorf("hash index %v", err)
 						}
-						if err := c.storage.SaveDigest(img, "sha256:"+fmt.Sprintf("digest: %x\n", digest)); err != nil {
+						if err := c.storage.SaveDigest(img, "sha256:"+fmt.Sprintf("%x", digest)); err != nil {
 							c.log.Errorf("save digest to db %v", err)
 							break
 						}

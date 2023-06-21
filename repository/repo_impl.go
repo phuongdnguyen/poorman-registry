@@ -1,22 +1,21 @@
-package mysql
+package repository
 
 import (
 	"github.com/xxxibgdrgnmm/reverse-registry/model"
-	repository "github.com/xxxibgdrgnmm/reverse-registry/repository/storage"
 	"gorm.io/gorm"
 )
 
-type MySQLStorage struct {
+type Storage struct {
 	db *gorm.DB
 }
 
-func NewMySQLStorage(db *gorm.DB) repository.Interface {
-	return &MySQLStorage{
+func NewStorage(db *gorm.DB) Interface {
+	return &Storage{
 		db,
 	}
 }
 
-func (s *MySQLStorage) FindByNameTag(nameWithTag string) (*model.ImageModel, error) {
+func (s *Storage) FindByNameTag(nameWithTag string) (*model.ImageModel, error) {
 	var iM model.ImageModel
 	query := s.db.Model(&model.ImageModel{})
 	query = query.Where("name=?", nameWithTag)
@@ -27,7 +26,7 @@ func (s *MySQLStorage) FindByNameTag(nameWithTag string) (*model.ImageModel, err
 	return &iM, nil
 }
 
-func (s *MySQLStorage) FindByDigest(hashedIndex string) (*model.ImageModel, error) {
+func (s *Storage) FindByDigest(hashedIndex string) (*model.ImageModel, error) {
 	var iM model.ImageModel
 	query := s.db.Model(&model.ImageModel{})
 	query = query.Where("hashed_index=?", hashedIndex)
@@ -38,7 +37,7 @@ func (s *MySQLStorage) FindByDigest(hashedIndex string) (*model.ImageModel, erro
 	return &iM, nil
 }
 
-func (s *MySQLStorage) SaveDigest(nameWithTag string, hashedIndex string) error {
+func (s *Storage) SaveDigest(nameWithTag string, hashedIndex string) error {
 	var iM model.ImageModel
 	iM.Name = nameWithTag
 	iM.HashedIndex = hashedIndex

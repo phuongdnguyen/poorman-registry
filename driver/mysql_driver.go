@@ -15,9 +15,6 @@ func NewMySQLDB(host string, user string, password string, dbName string) (*gorm
 		Logger: logger.Default.LogMode(logger.Silent),
 	})
 	if err != nil {
-		msg := fmt.Sprintf("cannot connect to database. host: %s, user: %s, db: %s", host, user, dbName)
-		fmt.Println(msg)
-
 		return nil, err
 	}
 

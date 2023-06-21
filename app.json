@@ -1,0 +1,25 @@
+{
+    "name": "reverse-registry",
+    "env": {
+        "WORKER_FETCH_INTERVAL": {
+            "description": "specify interval to fetch manifest from cgr",
+            "value": "30s",
+            "required": true
+        }
+    },
+    "options": {
+        "allow-unauthenticated": false,
+        "memory": "512Mi",
+        "cpu": "1",
+        "port": 443,
+        "http2": false,
+        "concurrency": 80,
+        "max-instances": 1
+    },
+    "build": {
+        "skip": false,
+        "buildpacks": {
+            "builder": "gcr.io/buildpacks/builder:v1"
+        }
+    }
+}

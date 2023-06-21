@@ -1,3 +1,4 @@
+db: sqlite
 dbConfig:
   host: localhost
   user: root

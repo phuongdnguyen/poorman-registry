@@ -10,7 +10,7 @@ import (
 	"github.com/docker/distribution/reference"
 	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
-	repository "github.com/xxxibgdrgnmm/reverse-registry/repository/storage"
+	"github.com/xxxibgdrgnmm/reverse-registry/repository"
 	containerregistry "github.com/xxxibgdrgnmm/reverse-registry/services/container-registry"
 	"github.com/xxxibgdrgnmm/reverse-registry/utils"
 )

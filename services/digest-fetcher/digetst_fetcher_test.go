@@ -18,6 +18,7 @@ func TestFetch(t *testing.T) {
 		Constraint:  "^1.2.*",
 		MainPackage: "nginx",
 	})
+
 	conf := config.Config{
 		DBConfig: config.MysqlConfig{
 			Host:     "localhost",
@@ -26,17 +27,19 @@ func TestFetch(t *testing.T) {
 			DBName:   "test",
 		},
 		Images:              images,
-		WorkerFetchInterval: 10,
+		WorkerFetchInterval: "10s",
 	}
+	d, err := time.ParseDuration(conf.WorkerFetchInterval)
 	storage, err := inject.GetStorage(conf)
 	assert.NoError(t, err)
 	registryClient, err := inject.GetContainerRegistryClient()
+	assert.NoError(t, err)
 	assert.NoError(t, err)
 	fetcher := New(Options{
 		Storage:       storage,
 		Registry:      registryClient,
 		Log:           log,
-		FetchInterval: conf.WorkerFetchInterval * time.Second,
+		FetchInterval: d,
 	})
 	fetcher.Fetch(conf.Images)
 }

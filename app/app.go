@@ -58,11 +58,15 @@ func RunFetcher(conf config.Config) error {
 	if err != nil {
 		return err
 	}
+	d, err := time.ParseDuration(conf.WorkerFetchInterval)
+	if err != nil {
+		return err
+	}
 	fetcher := digestfetcher.New(digestfetcher.Options{
 		Storage:       storage,
 		Registry:      registryClient,
 		Log:           log,
-		FetchInterval: conf.WorkerFetchInterval * time.Second,
+		FetchInterval: d,
 	})
 	return fetcher.Fetch(conf.Images)
 }

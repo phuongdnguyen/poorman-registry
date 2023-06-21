@@ -5,8 +5,6 @@ on:
     # run only against tags
     tags:
       - '*'
-    branches:
-      - refactor
 permissions:
   contents: write
   # packages: write

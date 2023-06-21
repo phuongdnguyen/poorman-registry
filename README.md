@@ -3,7 +3,7 @@
 # Reverse Registry
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/nduyphuong/reverse-registry/dev/LICENSE)
-[![Build status](https://github.com/nduyphuong/reverse-registry/workflows/build/badge.svg)](https://github.com/nduyphuong/reverse-registry/actions)
+[![Build status](https://github.com/nduyphuong/reverse-registry/actions/workflows/release.yml/badge.svg)](https://github.com/nduyphuong/reverse-registry/actions)
 
 
 [![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)

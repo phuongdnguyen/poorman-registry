@@ -5,12 +5,11 @@ import (
 
 	"github.com/xxxibgdrgnmm/reverse-registry/config"
 	"github.com/xxxibgdrgnmm/reverse-registry/driver"
-	repository "github.com/xxxibgdrgnmm/reverse-registry/repository/storage"
-	"github.com/xxxibgdrgnmm/reverse-registry/repository/storage/mysql"
+	"github.com/xxxibgdrgnmm/reverse-registry/repository"
 	containerregistry "github.com/xxxibgdrgnmm/reverse-registry/services/container-registry"
 )
 
-var imageMySQLStorage *mysql.MySQLStorage
+var imageMySQLStorage *repository.Storage
 var muImageMySQLStorage sync.Mutex
 
 func GetStorage(conf config.Config) (repository.Interface, error) {
@@ -28,7 +27,7 @@ func GetStorage(conf config.Config) (repository.Interface, error) {
 	if err != nil {
 		return nil, err
 	}
-	imageMySQL := mysql.NewMySQLStorage(db)
+	imageMySQL := repository.NewStorage(db)
 	return imageMySQL, nil
 }
 

@@ -9,7 +9,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/xxxibgdrgnmm/reverse-registry/config"
-	repository "github.com/xxxibgdrgnmm/reverse-registry/repository/storage"
+	repository "github.com/xxxibgdrgnmm/reverse-registry/repository"
 	containerregistry "github.com/xxxibgdrgnmm/reverse-registry/services/container-registry"
 	"github.com/xxxibgdrgnmm/reverse-registry/utils"
 )

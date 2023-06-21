@@ -11,7 +11,7 @@
         "allow-unauthenticated": false,
         "memory": "512Mi",
         "cpu": "1",
-        "port": 443,
+        "port": 9090,
         "http2": false,
         "concurrency": 80,
         "max-instances": 1

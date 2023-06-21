@@ -4,10 +4,10 @@ import (
 	"testing"
 	"time"
 
+	"github.com/nduyphuong/reverse-registry/config"
+	"github.com/nduyphuong/reverse-registry/inject"
 	"github.com/sirupsen/logrus"
 	"github.com/test-go/testify/assert"
-	"github.com/xxxibgdrgnmm/reverse-registry/config"
-	"github.com/xxxibgdrgnmm/reverse-registry/inject"
 )
 
 func TestFetch(t *testing.T) {

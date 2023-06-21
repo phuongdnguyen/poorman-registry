@@ -1,4 +1,4 @@
-module github.com/xxxibgdrgnmm/reverse-registry
+module github.com/nduyphuong/reverse-registry
 
 go 1.20
 

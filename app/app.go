@@ -5,12 +5,12 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/nduyphuong/reverse-registry/config"
+	"github.com/nduyphuong/reverse-registry/handler"
+	"github.com/nduyphuong/reverse-registry/inject"
+	digestfetcher "github.com/nduyphuong/reverse-registry/services/digest-fetcher"
+	"github.com/nduyphuong/reverse-registry/utils"
 	"github.com/sirupsen/logrus"
-	"github.com/xxxibgdrgnmm/reverse-registry/config"
-	"github.com/xxxibgdrgnmm/reverse-registry/handler"
-	"github.com/xxxibgdrgnmm/reverse-registry/inject"
-	digestfetcher "github.com/xxxibgdrgnmm/reverse-registry/services/digest-fetcher"
-	"github.com/xxxibgdrgnmm/reverse-registry/utils"
 )
 
 func RunAPI(conf config.Config) error {

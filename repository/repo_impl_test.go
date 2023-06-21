@@ -3,8 +3,8 @@ package repository
 import (
 	"testing"
 
+	"github.com/nduyphuong/reverse-registry/driver"
 	"github.com/test-go/testify/assert"
-	"github.com/xxxibgdrgnmm/reverse-registry/driver"
 )
 
 func TestRepoImpl(t *testing.T) {

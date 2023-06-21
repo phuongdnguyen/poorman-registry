@@ -14,10 +14,13 @@ require (
 	github.com/test-go/testify v1.1.4
 	golang.org/x/sync v0.3.0
 	gorm.io/driver/mysql v1.5.1
-	gorm.io/gorm v1.25.1
+	gorm.io/gorm v1.25.2-0.20230530020048-26663ab9bf55
 )
 
-require github.com/sigstore/cosign/v2 v2.0.3-0.20230619102641-b0072d56686b
+require (
+	github.com/sigstore/cosign/v2 v2.0.3-0.20230619102641-b0072d56686b
+	gorm.io/driver/sqlite v1.5.2
+)
 
 require (
 	cloud.google.com/go/compute v1.19.3 // indirect
@@ -129,6 +132,7 @@ require (
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
+	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/miekg/pkcs11 v1.1.1 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect

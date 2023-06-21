@@ -9,26 +9,34 @@ import (
 	containerregistry "github.com/xxxibgdrgnmm/reverse-registry/services/container-registry"
 )
 
-var imageMySQLStorage *repository.Storage
-var muImageMySQLStorage sync.Mutex
+var imageStorage *repository.Storage
+var muImageStorage sync.Mutex
 
 func GetStorage(conf config.Config) (repository.Interface, error) {
-	muImageMySQLStorage.Lock()
-	defer muImageMySQLStorage.Unlock()
-	if imageMySQLStorage != nil {
-		return imageMySQLStorage, nil
+	muImageStorage.Lock()
+	defer muImageStorage.Unlock()
+	if imageStorage != nil {
+		return imageStorage, nil
 	}
 	dbConfig := conf.DBConfig
 	host := dbConfig.Host
 	user := dbConfig.User
 	password := dbConfig.Password
 	dbName := dbConfig.DBName
-	db, err := driver.NewMySQLDB(host, user, password, dbName)
+	if conf.DB == "mysql" {
+		db, err := driver.NewMySQLDB(host, user, password, dbName)
+		if err != nil {
+			return nil, err
+		}
+		imageStorage := repository.NewStorage(db)
+		return imageStorage, nil
+	}
+	db, err := driver.NewSqliteDB()
 	if err != nil {
 		return nil, err
 	}
-	imageMySQL := repository.NewStorage(db)
-	return imageMySQL, nil
+	imageStorage := repository.NewStorage(db)
+	return imageStorage, nil
 }
 
 var registryClient *containerregistry.Client

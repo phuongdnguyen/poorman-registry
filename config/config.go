@@ -10,6 +10,7 @@ type MysqlConfig struct {
 }
 
 type Config struct {
+	DB                  string        `mapstructure:"db"`
 	DBConfig            MysqlConfig   `mapstructure:"dbConfig"`
 	Images              []Image       `mapstructure:"images"`
 	WorkerFetchInterval time.Duration `mapstructure:"workerFetchInterval"`

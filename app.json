@@ -15,11 +15,5 @@
         "http2": false,
         "concurrency": 80,
         "max-instances": 1
-    },
-    "build": {
-        "skip": false,
-        "buildpacks": {
-            "builder": "gcr.io/buildpacks/builder:v1"
-        }
     }
 }

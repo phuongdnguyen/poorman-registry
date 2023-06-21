@@ -8,7 +8,7 @@
         }
     },
     "options": {
-        "allow-unauthenticated": false,
+        "allow-unauthenticated": true,
         "memory": "512Mi",
         "cpu": "1",
         "port": 9090,

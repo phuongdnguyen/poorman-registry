@@ -1,7 +1,5 @@
 package config
 
-import "time"
-
 type MysqlConfig struct {
 	Host     string `mapstructure:"host"`
 	User     string `mapstructure:"user"`
@@ -10,10 +8,10 @@ type MysqlConfig struct {
 }
 
 type Config struct {
-	DB                  string        `mapstructure:"db"`
-	DBConfig            MysqlConfig   `mapstructure:"dbConfig"`
-	Images              []Image       `mapstructure:"images"`
-	WorkerFetchInterval time.Duration `mapstructure:"workerFetchInterval"`
+	DB                  string      `mapstructure:"db"`
+	DBConfig            MysqlConfig `mapstructure:"dbConfig"`
+	Images              []Image     `mapstructure:"images"`
+	WorkerFetchInterval string      `mapstructure:"workerFetchInterval"`
 }
 
 type Image struct {

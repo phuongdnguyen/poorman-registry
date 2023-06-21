@@ -28,6 +28,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"github.com/xxxibgdrgnmm/reverse-registry/config"
+	"github.com/xxxibgdrgnmm/reverse-registry/constant"
 )
 
 var cfgFile string
@@ -91,6 +92,14 @@ func initConfig() {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
 		if err = viper.Unmarshal(&c); err != nil {
 			panic(fmt.Sprintf("can not marshal config %v", err))
+		}
+		wF := os.Getenv(constant.WorkerFetchIntervalEnv)
+		mP := os.Getenv(constant.MySQLPassWordEnv)
+		if wF != "" {
+			c.WorkerFetchInterval = wF
+		}
+		if mP != "" {
+			c.DBConfig.Password = mP
 		}
 	}
 }

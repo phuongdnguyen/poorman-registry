@@ -1,7 +1,7 @@
 package driver
 
 import (
-	"github.com/xxxibgdrgnmm/reverse-registry/model"
+	"github.com/nduyphuong/reverse-registry/model"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"

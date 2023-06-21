@@ -3,10 +3,10 @@ package inject
 import (
 	"sync"
 
-	"github.com/xxxibgdrgnmm/reverse-registry/config"
-	"github.com/xxxibgdrgnmm/reverse-registry/driver"
-	"github.com/xxxibgdrgnmm/reverse-registry/repository"
-	containerregistry "github.com/xxxibgdrgnmm/reverse-registry/services/container-registry"
+	"github.com/nduyphuong/reverse-registry/config"
+	"github.com/nduyphuong/reverse-registry/driver"
+	"github.com/nduyphuong/reverse-registry/repository"
+	containerregistry "github.com/nduyphuong/reverse-registry/services/container-registry"
 )
 
 var imageStorage *repository.Storage

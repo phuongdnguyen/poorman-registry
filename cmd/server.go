@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 xxxibgdrgnmm <nguyenduyphuong_t59@hus.edu.vn>
+Copyright © 2023 nduyphuong <nguyenduyphuong_t59@hus.edu.vn>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,8 @@ THE SOFTWARE.
 package cmd
 
 import (
+	"github.com/nduyphuong/reverse-registry/app"
 	"github.com/spf13/cobra"
-	"github.com/xxxibgdrgnmm/reverse-registry/app"
 	"golang.org/x/sync/errgroup"
 )
 

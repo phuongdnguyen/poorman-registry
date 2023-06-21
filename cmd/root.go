@@ -1,5 +1,5 @@
 /*
-Copyright © 2023 xxxibgdrgnmm nguyenduyphuong_t59@hus.edu.vn
+Copyright © 2023 nduyphuong nguyenduyphuong_t59@hus.edu.vn
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,10 +25,10 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/nduyphuong/reverse-registry/config"
+	"github.com/nduyphuong/reverse-registry/constant"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"github.com/xxxibgdrgnmm/reverse-registry/config"
-	"github.com/xxxibgdrgnmm/reverse-registry/constant"
 )
 
 var cfgFile string

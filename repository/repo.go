@@ -1,6 +1,6 @@
 package repository
 
-import "github.com/xxxibgdrgnmm/reverse-registry/model"
+import "github.com/nduyphuong/reverse-registry/model"
 
 type Interface interface {
 	FindByNameTag(nameWithTag string) (*model.ImageModel, error)

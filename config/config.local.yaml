@@ -4,7 +4,7 @@ dbConfig:
   user: root
   password: my-secret-pw
   dbName: test
-workerFetchInterval: 5
+workerFetchInterval: 5s
 images:
   - name: cgr.dev/chainguard/nginx
     constraint: "^1.2.*"

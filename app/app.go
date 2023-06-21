@@ -1,7 +1,9 @@
 package app
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -42,7 +44,11 @@ func RunAPI(conf config.Config) error {
 	router.Any("/token", handlerFactory.TokenHandler)
 	router.Any("/token/", handlerFactory.TokenHandler)
 	router.Any("/v2/:repo/*rest", handlerFactory.ProxyHandler)
-	if err := router.Run(":9090"); err != nil {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "9090"
+	}
+	if err := router.Run(fmt.Sprintf(":%s", port)); err != nil {
 		return err
 	}
 	return nil

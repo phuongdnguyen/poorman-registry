@@ -8,7 +8,7 @@ A Chainguard reverse registry that redirect to Chainguard's `cgr.dev/chainguard/
 [![Build status](https://github.com/nduyphuong/reverse-registry/actions/workflows/release.yml/badge.svg)](https://github.com/nduyphuong/reverse-registry/actions)
 
 
-[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run)
+[![Run on Google Cloud](https://deploy.cloud.run/button.svg)](https://deploy.cloud.run/?git_repo=https://github.com/nduyphuong/reverse-registry.git)
 
 ## Why use registry-redirector?
 - The public, free tier of Chainguard Images only serves `latest` tag. This could be of inconvenience so we wrote this reverse registry to continously watching Chainguard registry for digest changes and extract the package version via SBOM. We then tag the image according with the packaged software version and serve via this reverse registry.

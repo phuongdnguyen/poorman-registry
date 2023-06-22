@@ -19,6 +19,9 @@ By default, in-mem sqlite is used but MySQL is recommended for production setup.
 ```bash
 go run main.go server --config=config.yaml
 ```
+
+![](assets/demo.gif)
+
 ## How it works
 
 ```mermaid

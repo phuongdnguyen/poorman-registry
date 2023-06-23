@@ -36,7 +36,7 @@ func TestListTag(t *testing.T) {
 
 func TestVersionFromSbom(t *testing.T) {
 	c := New()
-	tag, err := c.VersionFromSbom("nginx", "cgr.dev/chainguard/nginx:1.25.1-r0")
+	v, err := c.VersionFromSbom("nginx", "cgr.dev/chainguard/nginx:1.25.1-r0")
 	assert.NoError(t, err)
-	fmt.Printf("sboms: %v\n", tag)
+	fmt.Printf("version: %v\n", v)
 }

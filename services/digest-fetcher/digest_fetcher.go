@@ -95,7 +95,7 @@ func (c *client) Fetch(images []config.Image) error {
 							c.log.Errorf("save digest to db %v", err)
 							break
 						}
-						c.log.Info("saved digest to db")
+						c.log.Infof("saved to db %s %s", v.Name, tag)
 					}
 				}
 			}()

@@ -28,8 +28,10 @@ func TestFetch(t *testing.T) {
 		},
 		Images:              images,
 		WorkerFetchInterval: "10s",
+		DB:                  "mysql",
 	}
 	d, err := time.ParseDuration(conf.WorkerFetchInterval)
+	assert.NoError(t, err)
 	storage, err := inject.GetStorage(conf)
 	assert.NoError(t, err)
 	registryClient, err := inject.GetContainerRegistryClient()

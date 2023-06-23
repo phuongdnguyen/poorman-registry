@@ -18,6 +18,7 @@ require (
 )
 
 require (
+	github.com/sigstore/cosign v1.13.1
 	github.com/sigstore/cosign/v2 v2.0.3-0.20230619102641-b0072d56686b
 	gorm.io/driver/sqlite v1.5.2
 )
@@ -130,7 +131,6 @@ require (
 	github.com/letsencrypt/boulder v0.0.0-20221109233200-85aa52084eaf // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
-	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/miekg/pkcs11 v1.1.1 // indirect

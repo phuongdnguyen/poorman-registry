@@ -1,5 +1,5 @@
 {
-    "name": "reverse-registry",
+    "name": "poorman-registry",
     "env": {
         "WORKER_FETCH_INTERVAL": {
             "description": "specify interval to fetch manifest from cgr",

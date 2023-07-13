@@ -20,8 +20,6 @@ By default, in-mem sqlite is used but MySQL is recommended for production setup.
 go run main.go server --config=config.yaml
 ```
 
-[![asciicast](https://asciinema.org/a/0DyqFWp4ARwt0VWS9HwnyO1s7.svg)](https://asciinema.org/a/0DyqFWp4ARwt0VWS9HwnyO1s7)
-
 ## How it works
 
 ```mermaid

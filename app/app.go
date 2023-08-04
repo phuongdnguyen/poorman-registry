@@ -16,38 +16,14 @@ import (
 )
 
 func RunAPI(conf config.Config) error {
-	router := gin.Default()
-	log := logrus.New()
-	storage, err := inject.GetStorage(conf)
+	router, handlerFactory, err := setupRouterAndHandlerFactory(conf)
 	if err != nil {
 		return err
 	}
-	registryClient, err := inject.GetContainerRegistryClient()
-	if err != nil {
-		return err
-	}
-	handlerFactory := handler.New(handler.Options{
-		Log:     log,
-		Cr:      registryClient,
-		Storage: storage,
-	})
 
-	router.Use(gin.WrapF(func(resp http.ResponseWriter, req *http.Request) {
-		log.WithFields(logrus.Fields{
-			"method": req.Method,
-			"url":    req.URL.String(),
-			"header": utils.Redact(req.Header),
-		}).Info("app got request")
-	}))
-	router.Any("/v2", handlerFactory.V2Handler)
-	router.Any("/v2/", handlerFactory.V2Handler)
-	router.Any("/token", handlerFactory.TokenHandler)
-	router.Any("/token/", handlerFactory.TokenHandler)
-	router.Any("/v2/:repo/*rest", handlerFactory.ProxyHandler)
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "9090"
-	}
+	setupRoutes(router, handlerFactory)
+
+	port := getPort()
 	if err := router.Run(fmt.Sprintf(":%s", port)); err != nil {
 		return err
 	}
@@ -55,24 +31,17 @@ func RunAPI(conf config.Config) error {
 }
 
 func RunFetcher(conf config.Config) error {
-	log := logrus.New()
-	storage, err := inject.GetStorage(conf)
+	storage, registryClient, err := setupStorageAndRegistryClient(conf)
 	if err != nil {
 		return err
 	}
-	registryClient, err := inject.GetContainerRegistryClient()
-	if err != nil {
-		return err
-	}
+
 	d, err := time.ParseDuration(conf.WorkerFetchInterval)
 	if err != nil {
 		return err
 	}
-	fetcher := digestfetcher.New(digestfetcher.Options{
-		Storage:       storage,
-		Registry:      registryClient,
-		Log:           log,
-		FetchInterval: d,
-	})
+
+	fetcher := setupFetcher(storage, registryClient, d)
+
 	return fetcher.Fetch(conf.Images)
 }

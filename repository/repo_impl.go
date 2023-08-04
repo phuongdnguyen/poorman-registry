@@ -38,9 +38,10 @@ func (s *Storage) FindByDigest(hashedIndex string) (*model.ImageModel, error) {
 }
 
 func (s *Storage) SaveDigest(nameWithTag string, hashedIndex string) error {
-	var iM model.ImageModel
-	iM.Name = nameWithTag
-	iM.HashedIndex = hashedIndex
+	iM := model.ImageModel{
+		Name:         nameWithTag,
+		HashedIndex:  hashedIndex,
+	}
 	if err := s.db.Save(&iM).Error; err != nil {
 		return err
 	}

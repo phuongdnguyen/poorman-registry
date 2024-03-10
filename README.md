@@ -2,7 +2,7 @@
 
 # Poor Man Registry
 
-A poor man's registry that redirect to Chainguard's `cgr.dev/chainguard/*` public registry. 
+A poor man's registry that redirect to Chainguard's container registry. 
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/nduyphuong/reverse-registry/dev/LICENSE)
 [![Build status](https://github.com/nduyphuong/poorman-registry/actions/workflows/release.yml/badge.svg)](https://github.com/nduyphuong/reverse-registry/actions)
@@ -13,7 +13,6 @@ A poor man's registry that redirect to Chainguard's `cgr.dev/chainguard/*` publi
 ## Motivation
 - The public, free tier of Chainguard Images only serves `latest` tag. This could be of inconvenience so we build this to continously watching Chainguard registry for digest changes and extract the package version via SBOM. We then tag the image according with the packaged software version and serve via this reverse registry.
 
-By default, in-mem sqlite is used but MySQL is recommended for production setup.
 ## Usage
 
 ```bash
